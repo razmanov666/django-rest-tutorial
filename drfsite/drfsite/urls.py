@@ -19,8 +19,10 @@ from django.urls import path
 from rest_framework import routers
 from women.views import WomenViewSet
 
-router = routers.SimpleRouter()
-router.register(r"women", WomenViewSet)
+# router = routers.SimpleRouter()
+router = routers.DefaultRouter()
+router.register(r"women", WomenViewSet, basename="women")
+# print(router.urls)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
