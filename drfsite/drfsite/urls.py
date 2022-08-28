@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import include
 from django.urls import path
 from django.urls import re_path
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework_simplejwt.views import TokenVerifyView
 from women.views import WomenAPIDestroy
 from women.views import WomenAPIList
 from women.views import WomenAPIUpdate
@@ -38,4 +41,7 @@ urlpatterns = [
     path("api/v1/womendelete/<int:pk>/", WomenAPIDestroy.as_view()),
     path("api/v1/auth/", include("djoser.urls")),
     re_path(r"^auth/", include("djoser.urls.authtoken")),
+    path("api/v1/token/", TokenObtainPairView.as_view()),
+    path("api/v1/token/refresh/", TokenRefreshView.as_view()),
+    path("api/v1/token/verify/", TokenVerifyView.as_view()),
 ]
